@@ -2,9 +2,16 @@ from pathlib import Path
 import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# ⚠️ SECURITY (production ke liye safe)
 SECRET_KEY = 'django-portfolio-muhammad-abdullah-secret-key-2026'
-DEBUG = True
+
+# 🚀 IMPORTANT: Railway ke liye DEBUG OFF
+DEBUG = False
+
+# 🚀 Allow all hosts (Railway / deployment)
 ALLOWED_HOSTS = ['*']
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -46,6 +53,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'portfolio_project.wsgi.application'
 
+
+# 🚀 DATABASE (SQLite default - OK for simple portfolio)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -53,5 +62,10 @@ DATABASES = {
     }
 }
 
+
+# 🚀 STATIC FILES (IMPORTANT for deployment)
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
