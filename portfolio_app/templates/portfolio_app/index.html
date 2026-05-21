@@ -103,7 +103,15 @@ textarea.fbi{resize:vertical;line-height:1.6;}
 <canvas id="bg"></canvas>
 <div id="app">
 <nav>
- Abdull
+  <div style="position:relative;width:50px;height:50px;border-radius:50%;overflow:hidden;border:1.5px solid #7c3aed;display:flex;align-items:center;justify-content:center;cursor:pointer" onclick="showPage('home')">
+    <canvas id="logoc" width="50" height="50" style="position:absolute;top:0;left:0"></canvas>
+    <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center">
+      <div style="display:flex;align-items:baseline;line-height:1">
+        <span style="font-size:14px;font-weight:700;color:#c4b5fd;font-family:Arial,sans-serif;text-shadow:0 0 6px #7c3aed">M</span><span style="font-size:9px;font-weight:700;color:#c4b5fd;font-family:Arial,sans-serif;text-shadow:0 0 6px #7c3aed">A</span><span style="font-size:5px;font-weight:700;color:#e2e8f0;font-family:Arial,sans-serif">bdul</span>
+      </div>
+      <div style="margin-top:1px;width:26px;height:1px;background:linear-gradient(to right,transparent,#a78bfa,#7c3aed,#a78bfa,transparent)"></div>
+    </div>
+  </div>
 
   <div class="nav-links">
     <button class="nav-btn active" onclick="showPage('home')">Home</button>
@@ -114,6 +122,7 @@ textarea.fbi{resize:vertical;line-height:1.6;}
     <button class="nav-btn" onclick="showPage('certifications')">Certifications</button>
   </div>
 </nav>
+
 
 <div class="page active" id="home">
   <div class="home-hero">
@@ -392,6 +401,22 @@ class P{
 for(let i=0;i<65;i++)pts.push(new P());
 canvas.addEventListener("click",e=>{for(let i=0;i<14;i++)pts.push(new P(e.clientX,e.clientY,true));});
 (function anim(){ctx.clearRect(0,0,W,H);ctx.fillStyle="rgba(6,11,20,.18)";ctx.fillRect(0,0,W,H);pts=pts.filter(p=>!p.b||p.life>0);pts.forEach(p=>{p.upd();p.draw();});requestAnimationFrame(anim);})();
+
+///logo
+
+const lc = document.getElementById('logoc');
+const lx = lc.getContext('2d');
+lx.fillStyle = '#0d0820';
+lx.fillRect(0,0,50,50);
+const ln = [{x:5,y:12},{x:5,y:25},{x:5,y:38},{x:15,y:7},{x:15,y:25},{x:15,y:43},{x:25,y:3},{x:25,y:47},{x:35,y:7},{x:35,y:25},{x:35,y:43},{x:45,y:12},{x:45,y:25},{x:45,y:38}];
+lx.strokeStyle='#4c1d95';lx.lineWidth=0.5;lx.globalAlpha=0.6;
+ln.forEach((n,i)=>ln.forEach((m,j)=>{if(i<j){const d=Math.sqrt((n.x-m.x)**2+(n.y-m.y)**2);if(d<22){lx.beginPath();lx.moveTo(n.x,n.y);lx.lineTo(m.x,m.y);lx.stroke();}}}));
+lx.globalAlpha=1;
+ln.forEach(n=>{lx.beginPath();lx.arc(n.x,n.y,1.2,0,Math.PI*2);lx.fillStyle='#7c3aed';lx.fill();});
+const g=lx.createRadialGradient(25,25,8,25,25,20);
+g.addColorStop(0,'rgba(13,8,32,0.95)');g.addColorStop(1,'rgba(13,8,32,0)');
+lx.fillStyle=g;lx.beginPath();lx.arc(25,25,22,0,Math.PI*2);lx.fill();
+
 </script>
 </body>
 </html>
