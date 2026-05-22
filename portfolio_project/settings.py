@@ -3,15 +3,11 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# ⚠️ SECURITY (production ke liye safe)
 SECRET_KEY = 'django-portfolio-muhammad-abdullah-secret-key-2026'
 
-# 🚀 IMPORTANT: Railway ke liye DEBUG OFF
 DEBUG = False
 
-# 🚀 Allow all hosts (Railway / deployment)
 ALLOWED_HOSTS = ['*']
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -25,6 +21,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -53,8 +50,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'portfolio_project.wsgi.application'
 
-
-# 🚀 DATABASE (SQLite default - OK for simple portfolio)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -62,16 +57,9 @@ DATABASES = {
     }
 }
 
-
-# 🚀 STATIC FILES (IMPORTANT for deployment)
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    ...
-]
-
