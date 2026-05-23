@@ -11,6 +11,31 @@ cat > /mnt/user-data/outputs/portfolio_updated.html << 'HTMLEOF'
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{--bg:#060b14;--card:#111a2e;--border:#1e2d4a;--accent:#00d4ff;--accent2:#7c3aed;--accent3:#10b981;--text:#e2e8f0;--muted:#64748b;--white:#fff;}
+/* ===== DAY MODE ===== */
+body.day-mode {
+  --bg: #f0f4f8;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --muted: #64748b;
+  --white: #0f172a;
+}
+body.day-mode canvas#bg { filter: invert(1) hue-rotate(180deg); opacity: 0.3; }
+
+/* ===== THEME TOGGLE BUTTON ===== */
+.theme-toggle {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: rgba(0,212,255,0.08);
+  color: var(--accent);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s;
+  margin-left: 0.5rem;
+  flex-shrink: 0;
+}
+.theme-toggle:hover { background: rgba(0,212,255,0.18); transform: scale(1.1); }
 html,body{font-family:"Times New Roman",Times,serif;background:var(--bg);color:var(--text);}
 canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;cursor:crosshair;}
 #app{position:relative;z-index:1;}
@@ -182,6 +207,8 @@ textarea.fbi{resize:vertical;line-height:1.6;}
       <div style="font-size:5px;font-weight:700;color:#e2e8f0;font-family:Arial,sans-serif;margin-top:1px;letter-spacing:0.5px">Tech</div>
     </div>
 </div>
+<!-- Theme Toggle Button -->
+<button class="theme-toggle" id="themeBtn" onclick="toggleTheme()" title="Toggle Day/Night">🌙</button>
 
   <!-- Hamburger button (mobile only) -->
   <div class="hamburger" id="hamburger" onclick="toggleMenu()">
@@ -505,6 +532,23 @@ canvas.addEventListener("click",e=>{for(let i=0;i<14;i++)pts.push(new P(e.client
   pts=pts.filter(p=>!p.b||p.life>0);
   pts.forEach(p=>{p.upd();p.draw();});
   requestAnimationFrame(anim);
+})();
+////nightshift button
+/* ===== THEME TOGGLE ===== */
+function toggleTheme() {
+  const body = document.body;
+  const btn = document.getElementById('themeBtn');
+  body.classList.toggle('day-mode');
+  btn.textContent = body.classList.contains('day-mode') ? '☀️' : '🌙';
+  localStorage.setItem('theme', body.classList.contains('day-mode') ? 'day' : 'night');
+}
+
+// On page load — remember user's preference
+(function() {
+  if (localStorage.getItem('theme') === 'day') {
+    document.body.classList.add('day-mode');
+    document.getElementById('themeBtn').textContent = '☀️';
+  }
 })();
 </script>
 </body>
