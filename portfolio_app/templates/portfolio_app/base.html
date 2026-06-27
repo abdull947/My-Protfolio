@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>{% block title %}Muhammad Abdullah - Portfolio{% endblock %}</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="{% static 'portfolio_app/css/style.css' %}">
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div id="app">
+<nav>
+<a href="{% url 'home' %}" style="text-decoration:none;display:inline-block;">
+<div class="logo-badge">
+    <canvas id="logoc" class="logo-canvas" width="50" height="50"></canvas>
+    <div class="logo-inner">
+      <div class="logo-text-row">
+        <span class="logo-A">A</span><span class="logo-bdul">bdul</span>
+      </div>
+      <div class="logo-line"></div>
+      <div class="logo-tech">Tech</div>
+    </div>
+</div>
+</a>
+  <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()" title="Toggle Day/Night">&#127769;</button>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="nav-links" id="navLinks">
+    <a href="{% url 'home' %}" class="nav-btn">Home</a>
+    <a href="{% url 'profile' %}" class="nav-btn">About Me</a>
+    <a href="{% url 'experience' %}" class="nav-btn">Experience</a>
+    <a href="{% url 'projects' %}" class="nav-btn">Projects</a>
+    <a href="{% url 'education' %}" class="nav-btn">Education</a>
+    <a href="{% url 'certifications' %}" class="nav-btn">Certifications</a>
+</div>
+</nav>
+
+{% block content %}
+{% endblock %}
+
+</div>
+
+<div class="footer">
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/muhammad-abdullah-72b802270" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+    <a href="https://github.com/abdull947" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
+    <a href="https://instagram.com/mabdull947" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i> Instagram</a>
+  </div>
+  <div class="fc">&#169; 2026 Muhammad Abdullah. All rights reserved.</div>
+</div>
+
+<div class="skills-strip"><div class="skills-track" id="st"></div></div>
+
+<script src="{% static 'portfolio_app/js/main.js' %}"></script>
+</body>
+</html>

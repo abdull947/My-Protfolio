@@ -1,0 +1,43 @@
+{% extends 'portfolio_app/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="page-inner">
+  <div class="st">About Me</div>
+  <p class="ss">Who I am &amp; what I bring</p>
+
+  <div class="ag">
+    <div class="card">
+      <div class="ct" style="margin-bottom:.5rem">Profile</div>
+      <p class="ctext">{{ profile.bio }}</p>
+    </div>
+    <div class="card">
+      <div class="ct" style="margin-bottom:.5rem">Contact</div>
+      <p class="ctext">
+        &#128205; {{ profile.location }}<br><br>
+        &#128231; {{ profile.email }}<br><br>
+        &#128241; {{ profile.phone }}
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ct" style="margin-bottom:.8rem">Technical Skills</div>
+    <div style="display:flex;flex-wrap:wrap;gap:.5rem">
+      {% for skill in profile.get_skills_list %}
+      <span class="tag" style="font-size:.78rem;padding:.3rem .7rem">{{ skill }}</span>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ct" style="margin-bottom:.5rem">Languages</div>
+    <p class="ctext">
+      {% for lang in profile.get_languages_list %}
+        {{ lang }}{% if not forloop.last %} &nbsp;&nbsp; {% endif %}
+      {% endfor %}
+    </p>
+  </div>
+
+</div>
+{% endblock %}

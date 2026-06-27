@@ -1,0 +1,28 @@
+{% extends 'portfolio_app/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="page-inner">
+  <div class="st">Certifications</div>
+  <p class="ss">Credentials and achievements</p>
+
+  <div class="cg">
+    {% for cert in certifications %}
+    <div class="crc">
+      <div style="font-size:1.5rem">{{ cert.icon }}</div>
+      <div>
+        <div class="crn">
+          {% if cert.certificate_file %}
+            <a href="{{ cert.certificate_file.url }}" target="_blank" style="color:inherit;text-decoration:none;">{{ cert.name }}</a>
+          {% else %}
+            {{ cert.name }}
+          {% endif %}
+        </div>
+        <div class="cro">{{ cert.organization }}</div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+</div>
+{% endblock %}

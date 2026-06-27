@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import Comment
+from .models import Certification, Comment, Profile, Project , Experience , Education ,Profile
 import json
-
 def home(request):
     comments = Comment.objects.all()
-    return render(request, 'portfolio_app/index.html', {'comments': comments})
-
+    projects = Project.objects.all()
+    return render(request, 'portfolio_app/home.html', {
+        'comments': comments,
+        'projects': projects
+    })
 @csrf_exempt
 def submit_comment(request):
     if request.method == 'POST':
@@ -51,3 +53,19 @@ def get_comments(request):
         'date': c.created_at.strftime('%d %b %Y')
     } for c in comments]
     return JsonResponse({'comments': data, 'count': len(data)})
+def projects(request):
+    projects = Project.objects.all()
+    return render(request, 'portfolio_app/projects.html', {'projects': projects})
+
+def experience(request):
+    experiences = Experience.objects.all()
+    return render(request, 'portfolio_app/experience.html', {'experiences': experiences})
+def education(request):
+    educations = Education.objects.all()
+    return render(request, 'portfolio_app/education.html', {'educations': educations})
+def certifications(request):
+    certifications = Certification.objects.all()
+    return render(request, 'portfolio_app/certifications.html', {'certifications': certifications})
+def profile(request):
+    profile = Profile.objects.first()
+    return render(request, 'portfolio_app/profile.html', {'profile': profile})

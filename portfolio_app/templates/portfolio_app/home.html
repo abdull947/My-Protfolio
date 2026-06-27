@@ -1,0 +1,52 @@
+{% extends 'portfolio_app/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="home-hero">
+    <div class="home-inner">
+      <div class="avatar">
+        <img src="{% static 'images/abdul.png' %}" alt="Muhammad Abdullah">
+      </div>
+      <div class="intro">
+        <div class="name">Muhammad<br>Abdullah</div>
+        <div class="title-tag">AI/ML Enthusiast &amp; Django Developer</div>
+        <p class="bio">Computer Science graduate with a strong interest in Artificial Intelligence, Machine Learning, and intelligent software systems. Focused on creating smart, practical, and user-centered AI solutions for real-world challenges.</p>
+        <div class="cta-row">
+          <button class="btn-p" onclick="window.location.href='#'">View Projects</button>
+          <button class="btn-o" onclick="window.location.href='#'">Experience</button>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="scroll-hint">&#8595; Scroll down to leave feedback &#8595;</div>
+<div class="home-feedback">
+    <div class="fb-div"></div>
+    <div class="fb-h">&#128172; Leave Your Feedback</div>
+    <div class="fb-s">Your feedback will be saved to our database securely.</div>
+    <div class="fb-form" id="fb-form">
+      <div class="fb-row">
+        <div><label>Your Name *</label><input class="fbi" type="text" id="fb-name" placeholder="e.g. Muhammad Abdullah"/></div>
+        <div><label>Email (optional)</label><input class="fbi" type="email" id="fb-email" placeholder="your@email.com"/></div>
+      </div>
+      <div style="margin-bottom:.75rem"><label>Rating *</label>
+        <div class="stars" id="star-rating">
+          <span class="star" data-val="1">&#9733;</span>
+          <span class="star" data-val="2">&#9733;</span>
+          <span class="star" data-val="3">&#9733;</span>
+          <span class="star" data-val="4">&#9733;</span>
+          <span class="star" data-val="5">&#9733;</span>
+        </div>
+      </div>
+      <div style="margin-bottom:.75rem"><label>Your Message *</label>
+        <textarea class="fbi" id="fb-msg" rows="4" placeholder="Write your feedback here..."></textarea>
+      </div>
+      <button class="fb-sub-btn" onclick="submitFeedback()">Submit Feedback &#9993;</button>
+      <span id="fb-st"></span>
+    </div>
+    <div id="fb-success-box">
+      <div style="font-size:1rem;color:#6ee7b7;">Thanks for your Lovely comment and Suggestions &#128591;</div>
+      <div style="margin-top:.6rem;font-size:1.4rem;font-weight:700;letter-spacing:3px;background:linear-gradient(135deg,#00d4ff,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">&#8212; Abdul Tech &#8212;</div>
+    </div>
+    <div style="height:80px"></div>
+</div>
+{% endblock %}

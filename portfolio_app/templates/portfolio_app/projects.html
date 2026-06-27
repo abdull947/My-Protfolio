@@ -1,0 +1,23 @@
+{% extends 'portfolio_app/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="page-inner">
+  <div class="st">Projects</div>
+  <p class="ss">Things I have built</p>
+  <div class="pg">
+    {% for project in projects %}
+    <div class="pc">
+    <img src="{{ project.image.url }}" alt="{{ project.title }}" style="width:80%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:.40rem;">      <div class="pn">{{ project.title }}</div>
+      <div class="pd">{{ project.description }}</div>
+      <div class="tt">
+        <a href="{{ project.github_link }}" target="_blank" class="tag">GitHub</a>
+        {% if project.live_link %}
+        <a href="{{ project.live_link }}" target="_blank" class="tag">Live Demo</a>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

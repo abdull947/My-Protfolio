@@ -1,0 +1,25 @@
+{% extends 'portfolio_app/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="page-inner">
+  <div class="st">Experience</div>
+  <p class="ss">My Professional Journey</p>
+
+  {% for experience in experiences %}
+  <div class="card">
+    <div class="ch">
+      <div class="ct">{{ experience.job_title }}</div>
+      <span class="cb">{{ experience.start_date }} – {{ experience.end_date }}</span>
+    </div>
+    <div class="csub">{{ experience.company }}</div>
+    <ul class="buls">
+      {% for point in experience.get_responsibilities_list %}
+      <li>{{ point }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endfor %}
+
+</div>
+{% endblock %}

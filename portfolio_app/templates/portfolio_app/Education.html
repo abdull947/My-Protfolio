@@ -1,0 +1,21 @@
+{% extends 'portfolio_app/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="page-inner">
+  <div class="st">Education</div>
+  <p class="ss">My academic journey</p>
+
+  {% for edu in educations %}
+  <div class="card">
+    <div class="ch">
+      <div class="ct">{{ edu.degree_title }}</div>
+      <span class="cb g">{{ edu.year_range }}</span>
+    </div>
+    <div class="csub">{{ edu.institution }}</div>
+    <p class="ctext">{{ edu.description }}</p>
+  </div>
+  {% endfor %}
+
+</div>
+{% endblock %}
